@@ -22,7 +22,7 @@ sp_oauth = SpotifyOAuth(
 )
 
 # Get URL query parameters
-query_params = st.experimental_get_query_params()
+query_params = st.query_params()
 
 # Try to get token from cache
 token_info = sp_oauth.get_cached_token()
