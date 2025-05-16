@@ -38,11 +38,14 @@ if token_info:
     st.title("🎧 Spotify Listening Habits Visualizer")
 
     # Time range selector
-    time_range = st.selectbox("Select time range:", {
+    time_range_label = st.selectbox("Select time range:", ["Last 4 weeks", "Last 6 months", "All time"])
+    time_range_map = {
         "Last 4 weeks": "short_term",
         "Last 6 months": "medium_term",
         "All time": "long_term"
-    })
+    }
+    time_range = time_range_map[time_range_label]
+
 
     top_tracks = sp.current_user_top_tracks(limit=10, time_range=time_range)["items"]
     if not top_tracks:
