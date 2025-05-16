@@ -24,6 +24,8 @@ sp_oauth = SpotifyOAuth(
 
 query_params = st.query_params
 token_info = sp_oauth.get_cached_token()
+if token_info and sp_oauth.is_token_expired(token_info):
+    token_info = sp_oauth.refresh_access_token(token_info["refresh_token"])
 
 if not token_info and "code" not in query_params:
     auth_url = sp_oauth.get_authorize_url()
